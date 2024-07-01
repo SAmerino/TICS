@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light d-flex flex-wrap justify-content-center py-5 mb-4 border-bottom">
     <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="/tics/admin">BotaniCare</a>
         <button
             class="navbar-toggler d-lg-none"
             type="button"
@@ -16,13 +16,10 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" aria-current="page"
-                        >Home
-                        <span class="visually-hidden">(current)</span></a
-                    >
+                    <a class="nav-link" href="/tics/admin/vincular.php">Vincular</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="vincular.php">Vincular</a>
+                    <a class="nav-link" href="/tics/admin/plantas.php">Mis Plantas</a>
                 </li>
             </ul>
         </div>

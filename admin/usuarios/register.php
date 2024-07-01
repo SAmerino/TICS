@@ -17,6 +17,7 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="../styles.css">
     </head>
 
     <body>
@@ -42,7 +43,7 @@
         </div>
         </main>
         <footer>
-            <?php include("../templates/navbar.php")?>
+            <?php include("../templates/footer.php")?>
         </footer>
         <!--Scripts js -->
         <script src='register.js'></script>

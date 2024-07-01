@@ -1,98 +1,83 @@
-<?php
-    session_start();
-
-    if(!isset($_SESSION['user_id'])){
-        header("Location: usuarios/login.php");
-        exit();
-    }
-?>
-
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Title</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-    </head>
-
-    <body>
-        <header>
-            <!-- place navbar here -->
-            <?php include("templates/navbar.php")?>
-        </header>
-        <main>
-            <div class="row align-items-md-stretch">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>BotaniCare</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top">BotaniCare</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="admin/usuarios/login.php">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin/usuarios/register.php">Register</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Bienvenido a BotaniCare</div>
+            <div class="masthead-heading text-uppercase">Es un placer conocerte</div>
+            <a class="btn btn-primary btn-xl text-uppercase" href="#services">Explora Más</a>
+        </div>
+    </header>
+    <!-- Services-->
+    <section class="page-section" id="services">
+        <div class="container">
+            <div class="row">
                 <div class="col-md-6">
-                    <div
-                        class="h-100 p-5 text-white bg-primary border rounded-3"
-                    >
-                        <h2>Change the background</h2>
-                        <p>
-                            Swap the background-color utility and add a `.text-*` color
-                            utility to mix up the jumbotron look. Then, mix and match with
-                            additional component themes and more.
-                        </p>
-                        <button
-                            class="btn btn-outline-primary"
-                            type="button"
-                        >
-                            Example button
-                        </button>
-                    </div>
+                    <h2 class="section-heading text-uppercase">Uso de la Aplicación</h2>
+                    <p class="text-muted">Primero para usar BotaniCare tienes que crear una cuenta! Una vez creada sigue estos pasos,
+                         primero verifica el codigo de tu dispositivo y ve a la pestaña vincular, ingresa tu 
+                         codigo y listo! ahora en la pestaña plantas podras ver tu planta y sus datos, tambien
+                          en detalles podras ver la informacion de tu planta a lo largo del tiempo.
+                    </p>
                 </div>
                 <div class="col-md-6">
-                    <div
-                        class="h-100 p-5 bg-primary border rounded-3"
-                    >
-                        <h2>Add borders</h2>
-                        <p>
-                            Bienvenido <?php echo ($_SESSION["user_nombre"]);?>
-                            Or, keep it light and add a border for some added definition
-                            to the boundaries of your content. Be sure to look under the
-                            hood at the source HTML here as we've adjusted the alignment and
-                            sizing of both column's content for equal-height.
-                        </p>
-                        <button
-                            class="btn Swap the background-color utility and add a `.text-*` color
-                            utility to mix up the jumbotron look. Then, mix and match with
-                            additional component themes and more."
-                            type="button"
-                        >
-                            Example button
-                        </button>
-                    </div>
+                    <h2 class="section-heading text-uppercase">Beneficios de la aplicacion</h2>
+                    <p class="text-muted">Esta sección proporcionará información detallada sobre diferentes tipos de plantas, sus requisitos de cuidado, beneficios, y más.</p>
                 </div>
             </div>
-            
-        </main>
-        <footer>
-            <!-- place footer here -->
-            <?php include("templates/footer.php")?>
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
-
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-lg-start">&copy; BotaniCare</div>
+                <div class="col-lg-4 my-3 my-lg-0">
+                    <!-- Redes sociales (opcional) -->
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a class="link-dark text-decoration-none me-3" href="#!">Política de Privacidad</a>
+                    <a class="link-dark text-decoration-none" href="#!">Términos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
 </html>
