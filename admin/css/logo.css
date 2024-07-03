@@ -1,0 +1,53 @@
+/* Estilos generales del contenedor y alineación */
+
+/* Estilos comunes para ambos formularios */
+.form {
+    width: 90%; /* Ancho del formulario */
+    max-width: 500px; /* Máximo ancho del formulario */
+    padding: 30px; /* Incrementa el padding para más espacio interior */
+    border: 3px solid black; /* Borde sólido más notable */
+    background-color: #333; /* Fondo oscuro para contraste */
+    border-radius: 10px; /* Bordes redondeados */
+    color: white; /* Asegura texto blanco para todos los textos internos */
+}
+
+/* Estilos de los títulos y textos */
+.form h2 {
+    margin-bottom: 40px; /* Aumenta el espacio después del título */
+}
+
+/* Estilos para las etiquetas (labels) */
+.form label {
+    display: block; /* Asegura que cada etiqueta ocupe su propia línea */
+    margin-bottom: 10px; /* Aumenta el espacio antes de cada input */
+}
+
+/* Estilos para los inputs */
+.form .form-control {
+    margin-bottom: 25px; /* Aumenta el espacio entre inputs */
+    border-radius: 5px; /* Bordes redondeados para los inputs */
+}
+
+/* Estilos para los enlaces */
+.form .nav-link {
+    color: #0d6efd; /* Azul de Bootstrap para enlaces */
+    text-decoration: none; /* No subrayado */
+}
+
+.form .nav-link:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+/* Botón principal */
+.form .btn-primary {
+    width: 100%; /* El botón ocupa todo el ancho */
+    margin-top: 20px; /* Espacio antes del botón */
+}
+
+body {
+    background-image: url('../assets/img/header-bg.jpg')!important; /* Ajusta la ruta según la estructura de tu proyecto */
+    background-size: cover; /* Asegura que la imagen de fondo cubra todo el espacio disponible */
+    background-position: center; /* Centra la imagen en la página */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+

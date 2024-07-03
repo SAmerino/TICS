@@ -26,29 +26,40 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="styles.css">
+        <script src='js/scripts.js'></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="css/logo.css" rel="stylesheet" />
     </head>
 
     <body>
-        <header>
             <!-- place navbar here -->
+            <header class="bg-dark">
             <?php include("templates/navbar.php")?>
-        </header>
-        <main>
-            <div class="container d-flex justify-content-center align-items-center mb-auto">
-            <form id="vincularForm" method="post" class="border border-3 rounded border-black bg-color">
-                <h2 class="text-light mb-5">Vincular</h2>
-                <label for="codigo" class="form-label text-light">Codigo del dispositivo:</label>
-                <input type="text" placeholder="Codigo" class="form-control" id="codigo" required><br><br>
-                <input type="submit" class="btn btn-primary" value="Vincular">
-                <span style="float: right;" class="nav-item text-light"> <a href="index.php" class="nav-link">Volver</a></span>
-            </form>
-        </div>
-        </main>
-        <footer>
-            <!-- place footer here -->
-            <?php include("templates/footer.php")?>
-        </footer>
+            </header>
+        <main class="text-light py-5">
+    <div class="container d-flex justify-content-center align-items-center my-5 py-5">
+        <form id="vincularForm" method="post" class="p-5 bg-secondary border rounded border-black">
+            <h2 class="mb-4">Vincular</h2>
+            <div class="mb-3">
+                <label for="codigo" class="form-label">Codigo del dispositivo:</label>
+                <input type="text" placeholder="Codigo" class="form-control" id="codigo" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Vincular</button>
+            <a href="index.php" class="btn btn-link text-light float-right mt-3">Volver</a>
+        </form>
+    </div>
+</main>
+        <?php include("templates/footer.php")?>
         <!-- Bootstrap JavaScript Libraries -->
         <script>
         const id = "<?php echo($_SESSION['user_id']); ?>";

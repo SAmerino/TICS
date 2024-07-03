@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if(!isset($_SESSION['user_id'])){
+        header("Location: usuarios/login.php");
+        exit();
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +18,15 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -27,8 +39,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="admin/usuarios/login.php">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="admin/usuarios/register.php">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tics/admin/vincular.php">Vincular</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tics/admin/Plantas.php">Mis plantas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tics/admin/usuarios/cerrar.php"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -61,20 +74,7 @@
         </div>
     </section>
     <!-- Footer-->
-    <footer class="footer py-4">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-4 text-lg-start">&copy; BotaniCare</div>
-                <div class="col-lg-4 my-3 my-lg-0">
-                    <!-- Redes sociales (opcional) -->
-                </div>
-                <div class="col-lg-4 text-lg-end">
-                    <a class="link-dark text-decoration-none me-3" href="#!">Política de Privacidad</a>
-                    <a class="link-dark text-decoration-none" href="#!">Términos de Uso</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php include("templates/footer.php") ?>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

@@ -5,13 +5,12 @@
         header("Location: usuarios/login.php");
         exit();
     }
-
 ?>
 
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Dispositivos</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -20,13 +19,20 @@
         />
 
         <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-        <link rel="stylesheet" href="styless.css">
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+        <script src='js/scripts.js'></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="css/logo.css" rel="stylesheet" />
     </head>
 
     <body>
@@ -34,16 +40,18 @@
             <!-- place navbar here -->
             <?php include("templates/navbar.php")?>
         </header>
-        <main>
-        <h1>Dispositivos</h1>
-        <ul id="dispositivos"></ul>
+        <main class="container my-5">
+            <h1>Dispositivos</h1>
+            <div class="row" id="dispositivos">
+                <!-- Aquí se insertarán las tarjetas de dispositivos -->
+            </div>
         </main>
-        <footer>
+        <footer class="text-center py-3">
             <!-- place footer here -->
             <?php include("templates/footer.php")?>
         </footer>
         <script>
-        const id = <?php echo intval($_SESSION['user_id']); ?>;
+            const id = <?php echo intval($_SESSION['user_id']); ?>;
         </script>
         <script src='plantas.js'></script>
         <!-- Bootstrap JavaScript Libraries -->

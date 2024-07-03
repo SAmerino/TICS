@@ -1,85 +1,111 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const url = `http://localhost:3000/api/plantas/${id}`;
+document.addEventListener('DOMContentLoaded', async () => {
+    const dispositivosContainer = document.getElementById('dispositivos');
 
-    fetch(url)
+    try {
+        const responseDataFake = await fetch('http://localhost:3000/api/datafake');
+        const sensorData = await responseDataFake.json();
+
+        const responseDispositivos = await fetch(`http://localhost:3000/api/plantas/${id}`);
+        const dispositivosData = await responseDispositivos.json();
+
+        if (!dispositivosData.success) {
+            throw new Error('Error al cargar dispositivos');
+        }
+
+        const responseTodasPlantas = await fetch('http://localhost:3000/api/nombreplantas');
+        const todasPlantasData = await responseTodasPlantas.json();
+
+        if (!todasPlantasData.success) {
+            throw new Error('Error al cargar nombres de plantas');
+        }
+
+        if (!Array.isArray(dispositivosData.dispositivos)) {
+            throw new Error('Los datos de los dispositivos no están en formato de array');
+        }
+
+        dispositivosData.dispositivos.forEach((dispositivo, index) => {
+            const deviceCard = document.createElement('div');
+            deviceCard.className = 'device-card';
+            deviceCard.style = "background-color: rgba(0, 0, 0, 0.65); padding: 15px; border-radius: 10px; color: white;";
+            
+            let opcionesPlantas = todasPlantasData.plantas.map(planta => `<option value="${planta.nombre}">${planta.nombre}</option>`).join('');
+
+            deviceCard.innerHTML = `
+                <h3>${dispositivo.nombre}</h3>
+                <p>ID Dispositivo: ${dispositivo.codigo_dispositivo}</p>
+                <p>Temp Ideal: ${dispositivo.temperatura}°C</p>
+                <p>Temp Sensada: ${sensorData.temperatura}°C</p>
+                <p>Humedad Suelo Ideal: ${dispositivo.humedad_suelo}</p>
+                <p>Humedad Suelo Sensada: ${sensorData.humedad_suelo}</p>
+                <p>Humedad Aire Ideal: ${dispositivo.humedad_aire}%</p>
+                <p>Humedad Aire Sensada: ${sensorData.humedad_aire}%</p>
+                <form id="form-${dispositivo.codigo_dispositivo}">
+                    <input type="text" placeholder="Ubicación" class="form-control mb-2" name="ubicacion" value="${dispositivo.ubicacion}">
+                    <select class="form-select mb-2" name="nombrePlanta">
+                        ${opcionesPlantas}
+                    </select>
+                    <button type="button" class="btn btn-primary" onclick="actualizarPlanta()">Actualizar</button>
+                    <button type="button" class="btn btn-danger" onclick="desvincularDispositivo()">Desvincular</button>
+                </form>
+                <a href="detalles.php?codigo_disp=${dispositivo.codigo_dispositivo}">Detalles</a>
+            `;
+
+            dispositivosContainer.appendChild(deviceCard);
+        });
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+});
+
+function actualizarPlanta() {
+    const form = document.querySelector('.device-card form');
+    const formData = new FormData(form);
+    const ubicacion = formData.get('ubicacion');
+    const nombrePlanta = formData.get('nombrePlanta');
+    const codigoDisp = form.id.split('-')[1];
+
+    console.log('Actualizar planta con código dispositivo:', codigoDisp);
+    console.log('Ubicación:', ubicacion);
+    console.log('Nombre de la planta:', nombrePlanta);
+
+    fetch('http://localhost:3000/api/actualizarplanta', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: codigoDisp,
+            nuevoNombre: nombrePlanta,
+            ubicacion: ubicacion
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Éxito', data);
+        alert('Planta actualizada');
+        window.location.reload();
+    })
+    .catch(error => {
+        console.error('Error', error);
+        alert('Error al actualizar');
+    });
+}
+function desvincularDispositivo() {
+    const form = document.querySelector('.device-card form');
+    const codigo_disp = form.id.split('-')[1];
+    if(confirm("¿Está seguro de querer desvincular este dispositivo?")) {
+        fetch(`http://localhost:3000/api/desvincular/${codigo_disp}`, {
+            method: 'DELETE' // 
+        })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            const listadispositivos = document.getElementById('dispositivos');
-            listadispositivos.innerHTML = '';
-
-            if (data.success) {
-                data.dispositivos.forEach(dispositivo => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'dispositivo-item';  // Clase para CSS
-
-                    // Crear la lista desplegable de nombres
-                    const selectNombres = document.createElement('select');
-                    selectNombres.id = `nombre-${dispositivo.id}`;
-                    selectNombres.className = 'select-nombre';  // Clase para CSS
-
-                    // Obtener nombres de las plantas para llenar la lista desplegable
-                    fetch('http://localhost:3000/api/nombreplantas')
-                        .then(response => response.json())
-                        .then(dataNombres => {
-                            if (dataNombres.success) {
-                                dataNombres.plantas.forEach(planta => {
-                                    const option = document.createElement('option');
-                                    option.value = planta.nombre;
-                                    option.textContent = planta.nombre;
-                                    selectNombres.appendChild(option);
-                                });
-                            }
-                        });
-
-                    // Botón para actualizar el nombre
-                    const btnActualizar = document.createElement('button');
-                    btnActualizar.textContent = 'Actualizar';
-                    btnActualizar.className = 'btn btn-actualizar';  // Clase para CSS
-
-                    // Añadiendo funcionalidad al botón
-                    btnActualizar.onclick = function() {
-                        const nuevoNombre = selectNombres.value;
-                        fetch(`http://localhost:3000/api/actualizarplanta`, {
-                            method: 'PUT',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ id: dispositivo.id, nuevoNombre: nuevoNombre })
-                        })
-                        .then(response => response.json())
-                        .then(dataUpdate => {
-                            if (dataUpdate.success) {
-                                console.log('Nombre actualizado correctamente');
-                                alert('Nombre actualizado correctamente');
-                            } else {
-                                console.error('Error al actualizar el nombre');
-                                alert('Error al actualizar el nombre');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error en la solicitud:', error);
-                            alert('Error en la solicitud');
-                        });
-                    };
-
-                    // Botón de detalles
-                    const btnDetalles = document.createElement('button');
-                    btnDetalles.textContent = 'Detalles';
-                    btnDetalles.className = 'btn btn-detalles';  // Clase para CSS
-
-                    btnDetalles.onclick = function() {
-                        alert('Mostrando detalles del dispositivo: ' + dispositivo.codigo_dispositivo);
-                    };
-
-                    listItem.appendChild(selectNombres);
-                    listItem.appendChild(btnActualizar);
-                    listItem.appendChild(btnDetalles);
-                    listadispositivos.appendChild(listItem);
-                });
-            } else {
-                listadispositivos.textContent = 'No se pudieron cargar los dispositivos.';
-            }
+            console.log('Desvinculado con éxito', data);
+            alert('Dispositivo desvinculado exitosamente');
+            window.location.reload();
         })
-        .catch(error => console.error('Error al cargar los dispositivos:', error));
-});
+        .catch(error => {
+            console.error('Error al desvincular dispositivo', error);
+            alert('Error al desvincular el dispositivo');
+        });
+    }
+}

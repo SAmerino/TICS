@@ -1,38 +1,42 @@
-.dispositivo-item {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    list-style-type: none; /* Elimina los puntos de la lista */
+body {
+    font-family: Arial, sans-serif;
 }
 
-.nombre-actual {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
+header, footer {
+    background-color: #f8f9fa;
+    padding: 10px 0;
 }
 
-.select-nombre {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.btn {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0056b3;
+main {
+    margin-top: 20px;
 }
 
 #dispositivos {
-    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.device-card {
+    border: 1px solid #000;
+    padding: 20px;
+    flex: 1 1 calc(50% - 20px);
+    box-sizing: border-box;
+}
+
+.device-card h3 {
+    margin-top: 0;
+}
+
+.device-card p {
+    margin: 5px 0;
+}
+
+.device-card .form-control, 
+.device-card .form-select {
+    margin-bottom: 10px;
+}
+
+.device-card .btn {
+    margin: 5px 0;
 }
